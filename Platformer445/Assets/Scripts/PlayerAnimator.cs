@@ -31,7 +31,7 @@ public class PlayerAnimator : MonoBehaviour
         }
 
         //Animate Falling
-        if(pc.GetRigidbody().velocity.y < -0.01){
+        if(pc.GetRigidbody().velocity.y < -0.70){
             animate.SetBool("isFalling", true);
         } else{
             animate.SetBool("isFalling", false);
