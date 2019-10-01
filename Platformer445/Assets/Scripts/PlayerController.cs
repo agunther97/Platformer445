@@ -39,6 +39,8 @@ public class PlayerController : MonoBehaviour
     void Movement(){
       moveInput = Input.GetAxisRaw("Horizontal");
       rb.velocity = new Vector2(moveInput * speed, rb.velocity.y);
+      Debug.Log(rb.velocity.x);
+      Debug.Log(rb.velocity.y);
     }
 
     //Character jump
