@@ -71,16 +71,6 @@ public class GrapplingHook : MonoBehaviour
             }
         }
 
-        if(hit.collider != null && hit.collider.gameObject.tag == "Enemy"){
-                Debug.Log("asdf");
-                Destroy(gameObject);
-            }
-
-        
-            //line.SetPosition(0, transform.position);
-            //line.SetPosition(1,joint.connectedBody.transform.TransformPoint( joint.connectedAnchor));
-
-
         if(Input.GetMouseButton(0)){
             line.SetPosition(0, transform.position);
         }

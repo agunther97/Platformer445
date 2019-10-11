@@ -17,8 +17,11 @@ public class PlayerController : MonoBehaviour
     public float checkRadius;
     public LayerMask whatIsGround;
 
+    private Animator animate;
+
     void Start(){
         rb = GetComponent<Rigidbody2D>();
+        animate = GetComponent<Animator>();
     }
 
     void Update(){
@@ -39,8 +42,6 @@ public class PlayerController : MonoBehaviour
     void Movement(){
       moveInput = Input.GetAxisRaw("Horizontal");
       rb.velocity = new Vector2(moveInput * speed, rb.velocity.y);
-      Debug.Log(rb.velocity.x);
-      Debug.Log(rb.velocity.y);
     }
 
     //Character jump
@@ -63,5 +64,14 @@ public class PlayerController : MonoBehaviour
 
     public Rigidbody2D GetRigidbody(){
       return rb;
+    }
+
+    void OnCollisionEnter2D(Collision2D theCollision){
+      Debug.Log("Hit" + theCollision.gameObject.name);
+
+      if(theCollision.gameObject.tag == "Enemy"){
+        Debug.Log("asdfasfd");
+        animate.SetTrigger("Death");
+      }
     }
 }
