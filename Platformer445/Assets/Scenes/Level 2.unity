@@ -2039,7 +2039,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 242910763}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -24.887798, y: -5.7457705, z: -10}
+  m_LocalPosition: {x: -6.1848392, y: -5.7457705, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 758345993}
@@ -2166,9 +2166,9 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 494487640}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 238013b0c556f054c8901ee1bc0ab227, type: 3}
+  m_Script: {fileID: 11500000, guid: 1e738f4709c68834da04f6e8fd03ec39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 2127504706}
@@ -2749,7 +2749,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   line: {fileID: 494487641}
-  distance: 8
+  hookReach: 10
   mask:
     serializedVersion: 2
     m_Bits: 311

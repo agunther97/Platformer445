@@ -8,13 +8,20 @@ public class PlayerAnimator : MonoBehaviour
     private PlayerController pc;
 
 
-    void Start(){
-        animate = GetComponent<Animator>();
-        pc = GetComponent<PlayerController>();
+    void Start()
+    {
+        InitAnimateChecks();
     }
 
-    void Update(){
+    void Update()
+    {
         AnimateControls();   
+    }
+
+    public void InitAnimateChecks()
+    {
+        animate = GetComponent<Animator>();
+        pc = GetComponent<PlayerController>();
     }
 
     void AnimateControls(){

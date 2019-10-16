@@ -4,28 +4,22 @@ using UnityEngine;
 
 public class GrapplingHook : MonoBehaviour
 {
-    public LineRenderer line;
-    DistanceJoint2D joint;
-    Vector3 targetPos;
-    RaycastHit2D hit;
-    public float distance = 10f;
+    //Grappling Hook Components
+    Vector3 mousePos;
+    public LineRenderer hookLine;
+    DistanceJoint2D hook;
+    RaycastHit2D hookHit;
+    public float hookReach = 10f;
     public LayerMask mask;
-
     public float step = 0.02f;
 
 
     //Animator for grappling hook
     private Animator grappleAnimation;
-    // Start is called before the first frame update
-
 
     void Start()
     {
-        joint = GetComponent<DistanceJoint2D>();
-        joint.enabled = false;
-        line.enabled = false;
-
-        grappleAnimation = GetComponent<Animator>();  
+         InitHookChecks();
     }
 
     // Update is called once per frame
@@ -34,50 +28,56 @@ public class GrapplingHook : MonoBehaviour
         Grapple();
     }
 
-    public void Grapple(){
-        
-        if(joint.distance > .5f){
-            joint.distance -= step;
+    //Checks that need to be set at Start()
+    public void InitHookChecks()
+    {
+        hook = GetComponent<DistanceJoint2D>();
+        hook.enabled = false; hookLine.enabled = false;
+
+        grappleAnimation = GetComponent<Animator>(); 
+    }
+
+    public void Grapple()
+    {
+        if(hook.distance > .5f){
+            hook.distance -= step;
         } else{
-            line.enabled = false;
-            joint.enabled = false;
+            hookLine.enabled = false; hook.enabled = false;
         }
 
         if(Input.GetMouseButtonDown(0)){
-            targetPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            targetPos.z = 0;
+            mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            mousePos.z = 0;
 
-            hit = Physics2D.Raycast(transform.position, targetPos - transform.position, distance, mask);
+            hookHit = Physics2D.Raycast(transform.position, mousePos - transform.position, hookReach, mask);
             
             //This could possibly be used to interact with enemies, see doc for further notes
-            if(hit.collider != null && hit.collider.gameObject.GetComponent<Rigidbody2D>() != null){
-                joint.enabled = true;
+            if(hookHit.collider != null && hookHit.collider.gameObject.GetComponent<Rigidbody2D>() != null){
+                hook.enabled = true;
 
                 //Connects the grappling hook to the cursor placement, versus the center of the object we collided with
-                Vector2 connectPoint =hit.point - new Vector2(hit.collider.transform.position.x,hit.collider.transform.position.y);
-				connectPoint.x = connectPoint.x / hit.collider.transform.localScale.x;
-				connectPoint.y = connectPoint.y / hit.collider.transform.localScale.y;
-                joint.connectedAnchor = connectPoint;
+                Vector2 connectPoint =hookHit.point - new Vector2(hookHit.collider.transform.position.x,hookHit.collider.transform.position.y);
+				connectPoint.x = connectPoint.x / hookHit.collider.transform.localScale.x;
+				connectPoint.y = connectPoint.y / hookHit.collider.transform.localScale.y;
+                hook.connectedAnchor = connectPoint;
                 
-                joint.connectedBody = hit.collider.gameObject.GetComponent<Rigidbody2D>();
-                joint.distance = Vector2.Distance(transform.position, hit.point);
+                hook.connectedBody = hookHit.collider.gameObject.GetComponent<Rigidbody2D>();
+                hook.distance = Vector2.Distance(transform.position, hookHit.point);
 
-                line.enabled = true;
-                line.SetPosition(0, transform.position);
-                line.SetPosition(1, joint.connectedBody.transform.TransformPoint( joint.connectedAnchor));
-                line.GetComponent<RopeRatio>().grabPosition = hit.point;
+                hookLine.enabled = true;
+                hookLine.SetPosition(0, transform.position);
+                hookLine.SetPosition(1, hook.connectedBody.transform.TransformPoint( hook.connectedAnchor));
+                hookLine.GetComponent<HookRatio>().grabPosition = hookHit.point;
                 
                 grappleAnimation.SetTrigger("isGrappling");
             }
         }
 
         if(Input.GetMouseButton(0)){
-            line.SetPosition(0, transform.position);
+            hookLine.SetPosition(0, transform.position);
         }
-
         if(Input.GetMouseButtonUp(0)){
-            joint.enabled = false;
-            line.enabled = false;
+            hook.enabled = false; hookLine.enabled = false;
         }
     }
 }

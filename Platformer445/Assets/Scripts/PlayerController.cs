@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     private float moveInput;
     private Rigidbody2D rb;
     private bool facingRight = true;
+    public GameObject player;
 
     //GroundCheck controls
     private bool isGrounded;
@@ -19,15 +20,15 @@ public class PlayerController : MonoBehaviour
 
     private Animator animate;
 
-    void Start(){
-        rb = GetComponent<Rigidbody2D>();
-        animate = GetComponent<Animator>();
+    void Start()
+    {
+        InitPlayerChecks();
     }
 
-    void Update(){
+    void Update()
+    {
       Jump();
     }
-
     void FixedUpdate(){
       Movement();
       
@@ -36,6 +37,12 @@ public class PlayerController : MonoBehaviour
       } else if(facingRight == true && moveInput < 0){
           Flip();
       }
+    }
+
+    public void InitPlayerChecks()
+    {
+      rb = GetComponent<Rigidbody2D>();
+      animate = GetComponent<Animator>();
     }
 
     //Character movement
@@ -70,8 +77,18 @@ public class PlayerController : MonoBehaviour
       Debug.Log("Hit" + theCollision.gameObject.name);
 
       if(theCollision.gameObject.tag == "Enemy"){
-        Debug.Log("asdfasfd");
+        Debug.Log("death");
         animate.SetTrigger("Death");
+      }
+
+      if(theCollision.gameObject.tag == "Platform"){
+        player.transform.parent = theCollision.gameObject.transform;
+      }
+    }
+
+    void OnCollisionExit2D(Collision2D theCollision){
+      if(theCollision.gameObject.tag == "Platform"){
+        player.transform.parent = null;
       }
     }
 }
