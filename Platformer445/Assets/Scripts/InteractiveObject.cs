@@ -12,9 +12,9 @@ public class InteractiveObject : MonoBehaviour
         messageCanvas.enabled = false;
     }
 
-    void OnTriggerEnter2D(Collider2D other)
+    void OnTriggerEnter2D(Collider2D theCollision)
     {
-        if (other.name == "Player")
+        if (theCollision.gameObject.tag == "Player")
         {
             TurnOnMessage();
         }
@@ -25,9 +25,9 @@ public class InteractiveObject : MonoBehaviour
         messageCanvas.enabled = true;
     }
 
-    void OnTriggerExit2D(Collider2D other)
+    void OnTriggerExit2D(Collider2D theCollision)
     {
-        if (other.name == "Player")
+        if (theCollision.gameObject.tag == "Player")
         {
             TurnOffMessage();
         }
