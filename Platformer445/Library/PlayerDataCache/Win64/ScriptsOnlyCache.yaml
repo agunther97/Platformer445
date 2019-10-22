@@ -466,7 +466,7 @@ ScriptsOnlyBuild:
     className: TMP_Dropdown
   - hash:
       serializedVersion: 2
-      Hash: a2ac8ab90a82f272b9437ddde76965e8
+      Hash: e05048b81f39c132d4a9dbf65aaa1373
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GameManager
@@ -1150,7 +1150,7 @@ ScriptsOnlyBuild:
     className: SignalReceiver
   - hash:
       serializedVersion: 2
-      Hash: a54c7eda24a3db9aac62c86ef1d23824
+      Hash: e90f9245b9721c97a82ca70e86c1a332
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PlayerDeath
@@ -1370,6 +1370,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
+  - hash:
+      serializedVersion: 2
+      Hash: f465250be06e7887969ec4fe91789060
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Waypoint
   platform: 19
   scenePathNames:
   - Assets/Scenes/Main Menu.unity

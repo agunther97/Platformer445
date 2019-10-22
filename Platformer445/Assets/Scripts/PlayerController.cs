@@ -20,6 +20,9 @@ public class PlayerController : MonoBehaviour
 
     private Animator animate;
 
+    //Stores Object
+   
+
     void Start()
     {
         InitPlayerChecks();

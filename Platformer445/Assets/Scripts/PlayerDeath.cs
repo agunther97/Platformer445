@@ -4,16 +4,14 @@ using UnityEngine;
 
 public class PlayerDeath : MonoBehaviour
 {
-    public Transform spawnPos;
-
     //Stores  object
     GameObject gO;
     //Calls GameManager script
     GameManager gM;
 
+    public Transform getSpawnPos;
 
-    // Start is called before the first frame update
-    void Start()
+    void Update() 
     {
         InitPlayerDeathChecks();
     }
@@ -24,13 +22,15 @@ public class PlayerDeath : MonoBehaviour
         gO= GameObject.Find("GameManager");
         //Calls GameManager script from GameManager object
         gM = gO.GetComponent<GameManager>();
+
+        getSpawnPos.position = gM.spawnPos.position;
     }
 
     void OnCollisionEnter2D(Collision2D theCollsion)
     {
         if(theCollsion.gameObject.tag == "Player"){
             Debug.Log("Sub1");
-            theCollsion.transform.position = spawnPos.position;
+            theCollsion.transform.position = gM.spawnPos.position;
             gM.livesLeft--;
         }
     }

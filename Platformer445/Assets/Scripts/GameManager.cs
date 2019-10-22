@@ -5,6 +5,9 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public int livesLeft = 4;
+
+    public Transform spawnPos;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -14,7 +17,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        GameOver();
+        
     }
 
     private void GameOver(){
