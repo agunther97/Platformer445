@@ -7,6 +7,8 @@ public class WayPoint : MonoBehaviour
     GameObject gO;
 
     GameManager gM;
+
+    public int waypointLives;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,8 +23,10 @@ public class WayPoint : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D theCollision)
     {
-        if(theCollision.gameObject.tag == "Player"){
+        if(theCollision.gameObject.tag == "Player" && GameObject.Find("Spawner").transform.position.x < transform.position.x)
+        {
             gM.spawnPos.position = transform.position;
+            gM.livesLeft = 4;
         }
     }
 }
