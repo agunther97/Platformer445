@@ -55,15 +55,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-<<<<<<< Updated upstream
-     <Compile Include="Assets\ScoreScript.cs" />
      <Compile Include="Assets\Scripts\Collectible.cs" />
-=======
-     <Compile Include="Assets\GameOverController.cs" />
->>>>>>> Stashed changes
      <Compile Include="Assets\Scripts\EnemyRoute.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\Scripts\GameOver.cs" />
+     <Compile Include="Assets\Scripts\GameOverController.cs" />
      <Compile Include="Assets\Scripts\GrapplingHook.cs" />
      <Compile Include="Assets\Scripts\HookRatio.cs" />
      <Compile Include="Assets\Scripts\LevelSelection.cs" />
@@ -72,6 +68,7 @@
      <Compile Include="Assets\Scripts\PlayerAnimator.cs" />
      <Compile Include="Assets\Scripts\PlayerController.cs" />
      <Compile Include="Assets\Scripts\PlayerDeath.cs" />
+     <Compile Include="Assets\Scripts\ScoreScript.cs" />
      <Compile Include="Assets\Scripts\WayPoint.cs" />
      <None Include="Assets\BayatGames\Platform Game Assets Ultimate\Scenes\Readme.txt" />
      <None Include="Assets\BayatGames\Platform Game Assets Ultimate\Sources\Readme.txt" />
