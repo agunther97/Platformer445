@@ -809,6 +809,11 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 143117276318137469, guid: 0da274dd28e41674c8136817b9fd168b,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0da274dd28e41674c8136817b9fd168b, type: 3}
 --- !u!1001 &1819618517343382380
