@@ -18,9 +18,10 @@ public class PlayerController : MonoBehaviour
     public float checkRadius;
     public LayerMask whatIsGround;
 
-    //Stores Object
-   
+    //Stores Object //Calls GameManager script
+   GameObject gO; GameManager gM;
 
+    public Transform getSpawnPos;
     void Start()
     {
         InitPlayerChecks();
@@ -43,6 +44,13 @@ public class PlayerController : MonoBehaviour
     public void InitPlayerChecks()
     {
       rigidBody = GetComponent<Rigidbody2D>();
+
+      //Stores GameManager object to gO
+        gO= GameObject.Find("GameManager");
+        //Calls GameManager script from GameManager object
+        gM = gO.GetComponent<GameManager>();
+
+        getSpawnPos.position = gM.spawnPos.position;
     }
 
     //Character movement
@@ -78,6 +86,12 @@ public class PlayerController : MonoBehaviour
 
       if(theCollision.gameObject.tag == "Platform"){
         player.transform.parent = theCollision.gameObject.transform;
+      }
+
+      if(theCollision.gameObject.tag == "Enemy"){
+        player.transform.position = getSpawnPos.position;
+        gM.livesLeft--;
+
       }
     }
 
