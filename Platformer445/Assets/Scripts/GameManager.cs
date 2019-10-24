@@ -4,34 +4,22 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public Transform spawnPos;
-
     public int livesLeft = 4;
-    
-    GameObject Player;
 
-    Vector3 tempValue;
-
-    public static bool isPaused;
+    public Transform spawnPos;
 
     [SerializeField]
     private GameObject gameOverUI;
 
-    private void Awake()
-    {
+    GameObject Player;
+
+    void Awake(){
+        gameOverUI.SetActive(false);
         Player = GameObject.Find("Player");
         Player.transform.position = spawnPos.transform.position;
-        gameOverUI.SetActive(false);
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
+    void Update() 
     {
         GameOver();
     }

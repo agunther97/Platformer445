@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
     public float speed;
     public float jumpForce = 6f;
     private float moveInput;
-    private Rigidbody2D rb;
+    private Rigidbody2D rigidBody;
     private bool facingRight = true;
     public GameObject player;
 
@@ -17,8 +17,6 @@ public class PlayerController : MonoBehaviour
     public Transform groundCheck;
     public float checkRadius;
     public LayerMask whatIsGround;
-
-    private Animator animate;
 
     //Stores Object
    
@@ -44,14 +42,13 @@ public class PlayerController : MonoBehaviour
 
     public void InitPlayerChecks()
     {
-      rb = GetComponent<Rigidbody2D>();
-      animate = GetComponent<Animator>();
+      rigidBody = GetComponent<Rigidbody2D>();
     }
 
     //Character movement
     void Movement(){
       moveInput = Input.GetAxisRaw("Horizontal");
-      rb.velocity = new Vector2(moveInput * speed, rb.velocity.y);
+      rigidBody.velocity = new Vector2(moveInput * speed, rigidBody.velocity.y);
     }
 
     //Character jump
@@ -60,7 +57,7 @@ public class PlayerController : MonoBehaviour
       isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsGround);
 
       if(Input.GetKeyDown(KeyCode.Space) && isGrounded == true){
-        rb.velocity = Vector2.up * jumpForce;
+        rigidBody.velocity = Vector2.up * jumpForce;
       }
     }
 
@@ -73,16 +70,11 @@ public class PlayerController : MonoBehaviour
     }
 
     public Rigidbody2D GetRigidbody(){
-      return rb;
+      return rigidBody;
     }
 
     void OnCollisionEnter2D(Collision2D theCollision){
       Debug.Log("Hit" + theCollision.gameObject.name);
-
-      if(theCollision.gameObject.tag == "Enemy"){
-        Debug.Log("death");
-        animate.SetTrigger("Death");
-      }
 
       if(theCollision.gameObject.tag == "Platform"){
         player.transform.parent = theCollision.gameObject.transform;

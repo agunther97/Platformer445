@@ -5,7 +5,9 @@ public class PlayerAnimator : MonoBehaviour
 {
     private Animator animate;
 
-    private PlayerController pc;
+    private PlayerController player;
+
+    GameObject gO; GameManager gM;
 
 
     void Start()
@@ -21,7 +23,10 @@ public class PlayerAnimator : MonoBehaviour
     public void InitAnimateChecks()
     {
         animate = GetComponent<Animator>();
-        pc = GetComponent<PlayerController>();
+        player = GetComponent<PlayerController>();
+
+        //Stores GameManager object to gO //Calls GameManager script from GameManager object
+        gO= GameObject.Find("GameManager"); gM = gO.GetComponent<GameManager>();
     }
 
     void AnimateControls(){
@@ -38,10 +43,17 @@ public class PlayerAnimator : MonoBehaviour
         }
 
         //Animate Falling
-        if(pc.GetRigidbody().velocity.y < -1.8){
+        if(player.GetRigidbody().velocity.y < -1.8){
             animate.SetBool("isFalling", true);
         } else{
             animate.SetBool("isFalling", false);
+        }
+    }
+
+    void OnCollisionEnter2D(Collision2D theCollision)
+    {
+        if(theCollision.gameObject.tag == "Enemy" && gM.livesLeft == 0){
+            animate.SetTrigger("isDead");
         }
     }
 }

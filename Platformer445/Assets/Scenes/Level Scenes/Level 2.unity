@@ -11021,8 +11021,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2aaf5a025d3ee54bb26f8cf000595b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnPos: {fileID: 1062750296}
   livesLeft: 4
+  spawnPos: {fileID: 1062750296}
   gameOverUI: {fileID: 711633213}
 --- !u!4 &1264010277
 Transform:
